@@ -30,6 +30,26 @@ itemList.addEventListener('click',removeItem)
 itemList.addEventListener('click',editItem)
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  axios.get("https://crudcrud.com/api/e893503c5f644889b5c4701f934235ff/appointments")
+      .then((response) => {
+          for(var i=0; i<response.data.length; i++){
+              showUseronScreen(response.data[i]);
+          }
+          console.log(response);
+      }).catch((error) => {
+          console.log(error);
+      })
+})
+
+function showUseronScreen(obj) {
+
+  const parentElem = document.getElementById('items');
+  const childElem = document.createElement('li');
+  childElem.textContent = obj.amount + '-' + obj.descri + '-' + obj.category
+ parentElem.appendChild(childElem);
+}
+
 function dataOutput(e)
 {
     e.preventDefault();
