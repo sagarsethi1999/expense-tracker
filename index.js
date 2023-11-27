@@ -2,17 +2,24 @@
 function saveToLocalStorage(event)
 {
       event.preventDefault();
-      let myobj = {
+      let obj = {
        amount : event.target.amount.value,
        descri : event.target.descri.value,
        category : event.target.category.value
       };
 
-      var user = JSON.stringify(myobj);
+      // var user = JSON.stringify(myobj);
       
       
-      localStorage.setItem( event.target.descri.value , user);
-     
+      // localStorage.setItem( event.target.descri.value , user);
+      axios.post("https://crudcrud.com/api/e893503c5f644889b5c4701f934235ff/appointments", obj)
+                .then((res) =>{
+                    
+                     console.log(res);
+                }).catch((err)=>{
+                    console.log(err);
+                })
+      
 }
 
 var form=document.getElementById('forms');
